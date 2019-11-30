@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SHARK TANK SEARCH BY F22 LABS</title>
+    <style>
+      body {
+       background-image: url("static/bg2.png");
+       min-height: 100%;
+       min-width: 100%;
+       background-size: cover;
+      }
+
+      .header img {
+        float: left;
+        width: 70px;
+        height: 70px;
+        background: #555;
+      }
+
+      .header h1 {
+        position: relative;
+        top: 18px;
+        left: 40px;
+        color: white;
+        font: Courier New;
+      }
+      #all
+      {
+        color: white
+      }
+      #Seasons
+      {
+        position:fixed;
+        top:140px;
+        left:180px;
+      }
+      #Episode
+      {
+        position:fixed;
+        top:140px;
+        left:380px;
+      }
+      #Invest
+      {
+        position: fixed;
+        top:140px;
+        left:550px;
+      }
+      #Range
+      {
+        position: fixed;
+        top:180px;
+        left:540px;
+      }
+      #Gender
+      {
+        position: fixed;
+        top:140px;
+        left:800px;
+      }
+      #Gender_button
+      {
+        position: fixed;
+        top:180px;
+        left:800px;
+      }
+      #Investors
+      {
+        position: fixed;
+        top:140px;
+        left:1040px;
+      }
+      #Submit
+      {
+        position: fixed;
+        top:240px;
+        left:600px;
+        height: 30px;
+        width: 70px;
+      }
+      #Result
+      {
+        position: fixed;
+        top:300px;
+        left:280px;
+        background: transparent;
+        color:white;
+      }
+    </style>
+</head>
+<body>
+<div class="header" id="all">
+  <img src="static/logo5.jpg" alt="logo" />
+  <h1>F22 LABS</h1>
+
+<br><br><br><br>
+  <form method="post">
+    <div class="Seasons" id="Seasons">
+      Seasons&nbsp;&nbsp;<select name="Seasons">
+        <option value="0">All Seasons</option>
+        <option value="1">Season 1</option>
+        <option value="2">Season 2</option>
+        <option value="3">Season 3</option>
+        <option value="4">Season 4</option>
+        <option value="5">Season 5</option>
+        <option value="6">Season 6</option>
+        <option value="7">Season 7</option>
+      </select>
+    </div>
+  <div  id="Episode">
+    EPISODE&nbsp;&nbsp;<input type="number" name="episode" min="1" max="50" val=0>
+  </div>
+  <div id="Invest">
+    INVESTMENT AMOUNT
+  </div>
+  <div id="Range">
+    $1<input type="range" min="1" max="5000000" value="5000000" class="slider" name="amount">$50000
+  </div>
+  <div id="Gender">
+    ENTERPRENER GENDER
+  </div>
+  <div id="Gender_button">
+    Male<input type="radio" name="gender" value="male">&nbsp;&nbsp;&nbsp;
+    Female<input type="radio" name="gender" value="female"> &nbsp;&nbsp;&nbsp;
+    Both<input type="radio" name="gender" value="both" checked="checked">
+  </div>
+  <div id="Investors">
+    INVESTORS
+    <select name="investors">
+      <option value="All">All Investors</option>
+      <option value="Corcoran">Corcoran</option>
+      <option value="Cuban">Cuban</option>
+      <option value="Greiner">Greiner</option>
+      <option value="Herjavec">Herjavec</option>
+      <option value="John">John</option>
+      <option value="O'Leary">O'Leary</option>
+      <option value="Harrington">Harrington</option>
+      <option value="Guest">Guest</option>
+    </select>
+  </div>
+    <input type="submit" name="submit" id="Submit">
+  <br><br><br><br><br><br>
+    <br><textarea rows="20" cols="120" id="Result">{{Result}}</textarea>
+
+
+
+</form>
+</div>
+</body>
+</html>
