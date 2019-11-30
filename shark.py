@@ -15,7 +15,7 @@ mydb = mysql.connector.connect(
 def find_result(season=0, episode=0, investors="All", investor_amount=0,product="All",status="Funded",gender="Both"):
     print(season, episode, investors, investor_amount)
     cursor = mydb.cursor()
-    loginquery= "select c.Company, c.Amount, p.product, p.season, p.episode from products as p, company_info as c "
+    loginquery= "select p.company_link,c.Company, p.investors, p.product, c.Amount, p.season, p.episode from products as p, company_info as c "
     if (season==0 and episode==0 and investors=="All" and investor_amount==0):
         loginquery+=''
 
@@ -60,11 +60,19 @@ def find_result(season=0, episode=0, investors="All", investor_amount=0,product=
     cursor.execute(loginquery)
     records = cursor.fetchall()
     #print(records)
-    tstr=str('<table style="width:100%"><tr><th>Company</th><th>Amount($)</th><th>Product</th><th>Season</th><th>Episode</th></tr>')
+    tstr=str('<table style="width:100%"><tr><th>Company</th><th>Investors</th><th>Product</th><th>Amount($)</th><th>Season</th><th>Episode</th></tr>')
     for x in records:
+        count=0
         tstr+="<tr>"
         for y in x:
-            tstr+="<td>"+str(y)+"</td>"
+            if count==0:
+                tstr+="<td><a href='"+str(y)+"'>"
+                count+=1
+            elif count==1:
+                tstr+=str(y)+"</a></td>"
+                count+=1
+            else:
+                tstr+="<td>"+str(y)+"</td>"
         tstr+="</tr>"
     tstr+="</table>"
     print(tstr)
