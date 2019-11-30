@@ -1,8 +1,8 @@
 import mysql.connector
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, render_template, request
 
 
-
+#Database Connectivity
 mydb = mysql.connector.connect(
     host="remotemysql.com",
     user="7eumJKSEFG",
@@ -11,14 +11,12 @@ mydb = mysql.connector.connect(
     port=3306
 )
 
-
-
+#Database Query and Result
 def find_result(season=0, episode=0, investors="All", investor_amount=0,product="All",status="Funded",gender="Both"):
     print(season, episode, investors, investor_amount)
     cursor = mydb.cursor()
     loginquery= "select c.Company, c.Amount, p.product, p.season, p.episode from products as p, company_info as c "
     if (season==0 and episode==0 and investors=="All" and investor_amount==0):
-        #print("Default")
         loginquery+=''
 
     else:
@@ -62,26 +60,21 @@ def find_result(season=0, episode=0, investors="All", investor_amount=0,product=
     cursor.execute(loginquery)
     records = cursor.fetchall()
     #print(records)
-    tstr=""
+    tstr="Company\t\t\tAmount\t\tProduct\t\tseason\t\tepisode\n\n"
     for x in records:
         c=0
         for y in x:
             if(c==0):
-                tstr=tstr+str(y)+"\t\t"
+                tstr=tstr+str(y)+"\t\t\t"
                 c+=1
             else:
-                tstr=tstr+str(y)+"\t"
+                tstr=tstr+str(y)+"\t\t"
         tstr+="\n"
     print(tstr)
     return tstr
 
 
-
-
-def f1(text):
-    return text.upper()
-
-
+#FLASK APPLICATION
 app = Flask(__name__)
 
 @app.route('/')
@@ -100,14 +93,9 @@ def page():
     return render_template('index.html',Result=res)
     return render_template('index.html',Result=res)
 
-
+#CALLING FLASK APPLICATION
 if __name__ == '__main__':
     app.run(debug=True)
 
-####################################################################################
-
-
-
-# find_result(season=1,status="Funded",investors="Barbara Corcoran",gender="Female")
+#Closing Database Connection
 mydb.close()
-# season=1, ,status="Funded" investors="Barbara Corcoran"
