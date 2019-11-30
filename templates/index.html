@@ -87,6 +87,21 @@
         background: transparent;
         color:white;
       }
+      #out
+      {
+        position: fixed;
+        top:300px;
+        left:280px;
+        overflow: auto;
+        margin-top: 20px;
+        height: 400px;  
+
+      }
+      #out th div 
+      {
+           position: absolute; 
+           margin-top: -20px;
+      }
     </style>
 </head>
 <body>
@@ -141,7 +156,7 @@
   </div>
     <input type="submit" name="submit" id="Submit">
   <br><br><br><br><br><br>
-    <br><textarea rows="20" cols="120" id="Result">{{Result}}</textarea>
+  <div id="out" style="overflow-x:auto!important;">{{Result | safe}}</div>
 
 </form>
 </div>

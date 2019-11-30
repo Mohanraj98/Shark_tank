@@ -60,16 +60,13 @@ def find_result(season=0, episode=0, investors="All", investor_amount=0,product=
     cursor.execute(loginquery)
     records = cursor.fetchall()
     #print(records)
-    tstr="Company\t\t\tAmount\t\tProduct\t\tseason\t\tepisode\n\n"
+    tstr=str('<table style="width:100%"><tr><th>Company</th><th>Amount($)</th><th>Product</th><th>Season</th><th>Episode</th></tr>')
     for x in records:
-        c=0
+        tstr+="<tr>"
         for y in x:
-            if(c==0):
-                tstr=tstr+str(y)+"\t\t\t"
-                c+=1
-            else:
-                tstr=tstr+str(y)+"\t\t"
-        tstr+="\n"
+            tstr+="<td>"+str(y)+"</td>"
+        tstr+="</tr>"
+    tstr+="</table>"
     print(tstr)
     return tstr
 
@@ -89,8 +86,6 @@ def page():
     gender = request.form['gender']
     investors = request.form['investors']
     res= find_result(season=season,episode=episode,investors=investors,gender=gender,investor_amount=investor_amount)
-    code=str("<h1>Hello<h1>")
-    return render_template('index.html',Result=res)
     return render_template('index.html',Result=res)
 
 #CALLING FLASK APPLICATION
